@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Prontuários</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="/">Sistema Clínica</a>
+
+        <div class="navbar-nav">
+
+            <a class="nav-link" href="/paciente">Pacientes</a>
+            <a class="nav-link" href="/medico">Médicos</a>
+            <a class="nav-link" href="/consulta">Consultas</a>
+            <a class="nav-link active" href="/prontuario">Prontuários</a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <h2>Prontuários</h2>
+
+        <a href="/prontuario/novo" class="btn btn-success">
+            Novo Prontuário
+        </a>
+
+    </div>
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <table class="table table-hover table-striped align-middle">
+
+                <thead class="table-primary">
+
+                <tr>
+                    <th>Código</th>
+                    <th>Descrição</th>
+                    <th>Observação</th>
+                    <th>Consulta</th>
+                    <th width="220">Ações</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="prontuario : ${prontuarios}">
+
+                    <td th:text="${prontuario.codigo}"></td>
+
+                    <td th:text="${prontuario.descricao}"></td>
+
+                    <td th:text="${prontuario.observacao}"></td>
+
+                    <td th:text="${prontuario.consulta != null ? prontuario.consulta.codigo : '-'}"></td>
+
+                    <td>
+
+                        <a class="btn btn-warning btn-sm"
+                           th:href="@{'/prontuario/' + ${prontuario.codigo}}">
+                            Editar
+                        </a>
+
+                        <a class="btn btn-danger btn-sm"
+                           th:href="@{'/prontuario/delete/' + ${prontuario.codigo}}">
+                            Excluir
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(prontuarios)}">
+
+                    <td colspan="5" class="text-center">
+                        Nenhum prontuário cadastrado.
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

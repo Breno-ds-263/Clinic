@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Receituário</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="/">Sistema Clínica</a>
+
+        <div class="navbar-nav">
+            <a class="nav-link" href="/paciente">Pacientes</a>
+            <a class="nav-link" href="/medico">Médicos</a>
+            <a class="nav-link" href="/consulta">Consultas</a>
+            <a class="nav-link active" href="/receituario">Receituários</a>
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <h2 class="mb-4">Cadastro de Receituário</h2>
+
+            <form th:action="@{/receituario}" method="post">
+
+                <div class="mb-3">
+                    <label class="form-label">Observação</label>
+                    <textarea name="observacao"
+                              class="form-control"
+                              rows="4"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Prontuário</label>
+
+                    <select name="codigoProntuario" class="form-select" required>
+                        <option value="">Selecione um prontuário</option>
+
+                        <option th:each="prontuario : ${prontuarios}"
+                                th:value="${prontuario.codigo}"
+                                th:text="'Prontuário #' + ${prontuario.codigo}">
+                        </option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    Salvar
+                </button>
+
+                <a href="/receituario" class="btn btn-secondary">
+                    Voltar
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

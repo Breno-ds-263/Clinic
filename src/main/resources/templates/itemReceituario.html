@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Item do Receituário</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="/">Sistema Clínica</a>
+
+        <div class="navbar-nav">
+            <a class="nav-link" href="/paciente">Pacientes</a>
+            <a class="nav-link" href="/medico">Médicos</a>
+            <a class="nav-link" href="/consulta">Consultas</a>
+            <a class="nav-link active" href="/receituario">Receituários</a>
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <h2 class="mb-4">
+                Adicionar Medicamento ao Receituário
+            </h2>
+
+            <form th:action="@{/itemReceituario}" method="post">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Receituário
+                    </label>
+
+                    <select
+                            name="receituario.codigo"
+                            class="form-select"
+                            required>
+
+                        <option value="">
+                            Selecione...
+                        </option>
+
+                        <option
+                                th:each="receituario : ${receituarios}"
+                                th:value="${receituario.codigo}"
+                                th:text="'Receituário #' + ${receituario.codigo}">
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Medicamento
+                    </label>
+
+                    <select
+                            name="medicamento.codigo"
+                            class="form-select"
+                            required>
+
+                        <option value="">
+                            Selecione...
+                        </option>
+
+                        <option
+                                th:each="medicamento : ${medicamentos}"
+                                th:value="${medicamento.codigo}"
+                                th:text="${medicamento.nome}">
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Dosagem
+                            </label>
+
+                            <input
+                                    type="number"
+                                    name="dosagem"
+                                    class="form-control"
+                                    required>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Intervalo (horas)
+                            </label>
+
+                            <input
+                                    type="number"
+                                    name="intervaloEntreDoses"
+                                    class="form-control"
+                                    required>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Observação
+                    </label>
+
+                    <textarea
+                            name="observacao"
+                            rows="4"
+                            class="form-control">
+                    </textarea>
+
+                </div>
+
+                <button
+                        type="submit"
+                        class="btn btn-success">
+
+                    Salvar
+
+                </button>
+
+                <a
+                        href="/itemReceituario"
+                        class="btn btn-secondary">
+
+                    Voltar
+
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

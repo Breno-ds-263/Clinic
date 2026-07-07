@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Medicamento</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="/">Sistema Clínica</a>
+
+        <div class="navbar-nav">
+            <a class="nav-link" href="/paciente">Pacientes</a>
+            <a class="nav-link" href="/medico">Médicos</a>
+            <a class="nav-link active" href="/medicamento">Medicamentos</a>
+            <a class="nav-link" href="/consulta">Consultas</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+        <div class="card-body">
+
+            <h2 class="mb-4">Cadastro de Medicamento</h2>
+
+            <form th:action="@{/medicamento}" method="post">
+
+                <div class="mb-3">
+                    <label class="form-label">Nome</label>
+                    <input type="text" name="nome" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Dosagem</label>
+                    <input type="number" name="dosagem" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Tipo de Dosagem</label>
+                    <input type="text" name="tipoDosagem" class="form-control" placeholder="mg, ml, gotas...">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Descrição</label>
+                    <textarea name="descricao" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Observação</label>
+                    <textarea name="observacao" class="form-control" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success">Salvar</button>
+                <a href="/medicamento" class="btn btn-secondary">Voltar</a>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

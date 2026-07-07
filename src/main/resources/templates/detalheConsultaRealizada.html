@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta Realizada</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-success">
+    <div class="container">
+        <span class="navbar-brand">Detalhes da Consulta Realizada</span>
+        <a href="/area-medico/realizadas" class="btn btn-outline-light btn-sm">Voltar</a>
+    </div>
+</nav>
+
+<div class="container mt-4">
+
+    <div class="card shadow mb-4">
+        <div class="card-header bg-primary text-white">
+            Dados do Paciente
+        </div>
+
+        <div class="card-body">
+            <p><strong>Nome:</strong> <span th:text="${consulta.paciente.nome}"></span></p>
+            <p><strong>CPF:</strong> <span th:text="${consulta.paciente.cpf}"></span></p>
+            <p><strong>Contato:</strong> <span th:text="${consulta.paciente.contato}"></span></p>
+            <p><strong>Plano:</strong> <span th:text="${consulta.paciente.planoSaude}"></span></p>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header bg-success text-white">
+            Prontuário
+        </div>
+
+        <div class="card-body" th:if="${prontuario != null}">
+            <p><strong>Código:</strong> <span th:text="${prontuario.codigo}"></span></p>
+            <p><strong>Descrição:</strong> <span th:text="${prontuario.descricao}"></span></p>
+            <p><strong>Observação:</strong> <span th:text="${prontuario.observacao}"></span></p>
+
+            <a th:href="@{'/receituario/novo'}" class="btn btn-warning">
+                Cadastrar Receituário
+            </a>
+        </div>
+
+        <div class="card-body" th:if="${prontuario == null}">
+            <div class="alert alert-warning">
+                Esta consulta ainda não possui prontuário.
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
